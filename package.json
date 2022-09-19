@@ -10,7 +10,7 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write --check .",
-    "test": "jest --watch"
+    "test": "jest"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.35.6",

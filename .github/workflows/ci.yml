@@ -18,3 +18,5 @@ jobs:
         run: yarn format
       - name: Lint
         run: yarn lint
+      - name: Jest
+        run: yarn test

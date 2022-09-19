@@ -4,13 +4,6 @@ import { supabase } from 'utils/supabase'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-type Room = {
-  id: string
-  uid: string
-  name: string
-  created_at: string
-}
-
 export const getStaticProps: GetStaticProps = async () => {
   const { data: rooms } = await supabase.from('room').select('*')
   return {

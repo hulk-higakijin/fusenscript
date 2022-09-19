@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next/types'
 import { supabase } from 'utils/supabase'
 
@@ -22,7 +23,9 @@ const RoomsPage: NextPage<Props> = ({ rooms }) => {
   return (
     <>
       {rooms.map((room: Room) => (
-        <p key={room.id}>{room.name}</p>
+        <div key={room.uid}>
+          <Link href={`/fusen/rooms/${room.uid}`}>{room.name}</Link>
+        </div>
       ))}
     </>
   )

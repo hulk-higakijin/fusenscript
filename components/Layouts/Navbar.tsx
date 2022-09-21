@@ -1,3 +1,4 @@
+import { UserButton, SignedIn } from '@clerk/nextjs'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,10 +12,13 @@ const Navbar: NextPage = () => {
             FusenScript
           </p>
         </Link>
-        <ul className='ml-auto flex my-auto'>
+        <ul className='ml-auto flex my-auto gap-4'>
           <Link href={'/fusen/rooms'}>
-            <li className='text-sm cursor-pointer'>Rooms</li>
+            <li className='text-sm cursor-pointer my-auto'>Rooms</li>
           </Link>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </ul>
       </nav>
     </>

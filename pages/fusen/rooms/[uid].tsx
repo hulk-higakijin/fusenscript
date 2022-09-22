@@ -22,7 +22,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const RoomsUidPage: NextPage<Props> = ({ rooms, fusens, kanbans }) => {
   const [room, setRoom] = useState<Room>(rooms[0])
-  console.log(kanbans)
 
   return (
     <>
@@ -30,13 +29,17 @@ const RoomsUidPage: NextPage<Props> = ({ rooms, fusens, kanbans }) => {
       <p>--------------------</p>
       <ul>
         {fusens.map((fusen: Fusen) => (
-          <li key={fusen.id}>{fusen.content}</li>
+          <li key={fusen.id}>
+            {fusen.content}：{fusen.xcoordinate},{fusen.ycoordinate}
+          </li>
         ))}
       </ul>
       <p>--------------------</p>
       <ul>
         {kanbans.map((kanban: Kanban) => (
-          <li key={kanban.id}>{kanban.title}</li>
+          <li key={kanban.id}>
+            {kanban.title}：{kanban.xcoordinate},{kanban.ycoordinate}
+          </li>
         ))}
       </ul>
     </>

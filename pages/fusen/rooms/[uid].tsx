@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const users = await fetch(`${process.env.DOMAIN}/api/users`).then((res) =>
     res.json(),
   )
+
   return {
     props: { rooms, fusens, kanbans, users },
   }
@@ -34,7 +35,10 @@ const RoomsUidPage: NextPage<Props> = ({ rooms, fusens, kanbans, users }) => {
         {fusens.map((fusen: Fusen) => (
           <li key={fusen.id}>
             {fusen.content}：{fusen.xcoordinate},{fusen.ycoordinate},
-            {users.filter((user: any) => user.id == fusen.user_id)[0].firstName}
+            {
+              users.filter((user: User) => user.id == fusen.user_id)[0]
+                .firstName
+            }
           </li>
         ))}
       </ul>

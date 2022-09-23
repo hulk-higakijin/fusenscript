@@ -331,6 +331,20 @@
     snakecase-keys "^5.1.2"
     tslib "^2.3.1"
 
+"@clerk/backend-core@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@clerk/backend-core/-/backend-core-2.4.4.tgz#2ba2722df6fe6bbb9aa5949d18f3efb24a20d35b"
+  integrity sha512-XEzH4/nRv5HvMrooLaoFTWVi1lhnk+iuVall/J76Sy59wK0SmxJcVnom3kHuZWiVC1mhgWUcQVA9SL/fszZSVg==
+  dependencies:
+    "@clerk/types" "^3.6.0"
+    "@peculiar/webcrypto" "^1.4.0"
+    "@types/node" "^16.11.55"
+    "@types/node-fetch" "^2"
+    node-fetch "^2.6.0"
+    query-string "^7.0.1"
+    snakecase-keys "^5.1.2"
+    tslib "^2.3.1"
+
 "@clerk/clerk-react@^4.0.0-next.16":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@clerk/clerk-react/-/clerk-react-4.1.1.tgz#b166af7c5b944e2c2a6065a6973908a1ff81ca51"
@@ -347,6 +361,27 @@
   dependencies:
     "@clerk/backend-core" "^2.4.3"
     "@clerk/types" "^3.5.1"
+    "@peculiar/webcrypto" "^1.4.0"
+    "@types/cookies" "^0.7.7"
+    "@types/express" "^4.17.11"
+    "@types/jsonwebtoken" "^8.5.6"
+    "@types/node-fetch" "^2"
+    camelcase-keys "^6.2.2"
+    cookies "^0.8.0"
+    deepmerge "^4.2.2"
+    jsonwebtoken "^8.5.1"
+    jwks-rsa "^2.0.4"
+    node-fetch "^2.6.0"
+    snakecase-keys "^3.2.1"
+    tslib "^2.3.1"
+
+"@clerk/clerk-sdk-node@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@clerk/clerk-sdk-node/-/clerk-sdk-node-4.3.0.tgz#6e748b9430abe335ec7f4f2593c27e40402c1dbd"
+  integrity sha512-PcYNuPgIgrc7uPW4OsgRBVzLfBGwzRDUyZ+8VrhGwASojN0Ky6A8Nz/q3PIj2l24rYNo9+q9Scs4dX1KJKqpBA==
+  dependencies:
+    "@clerk/backend-core" "^2.4.4"
+    "@clerk/types" "^3.6.0"
     "@peculiar/webcrypto" "^1.4.0"
     "@types/cookies" "^0.7.7"
     "@types/express" "^4.17.11"
@@ -387,6 +422,13 @@
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@clerk/types/-/types-3.5.1.tgz#47a58ba090bf86c0d18fb67f03f2d103d243ddf2"
   integrity sha512-Red1bZ18ek+rZfnxQrT3gjKmWMRr9bmpbp2X/4rQ607F6Cm6tqYpXvneZSFYorwoNTTY3WnosZryvd6luz79Lw==
+  dependencies:
+    csstype "^3.1.0"
+
+"@clerk/types@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@clerk/types/-/types-3.6.0.tgz#e1e2c4453bb2f2a162425e9cece56346ddb6b225"
+  integrity sha512-wc+w7QQ7T45EQ14SlCGVTOshZSBcFbdoWcnqKNzhbysttgmsNx+fzWDmG9yWAzPT21ZQKThnGcXOxXQEEtfGpQ==
   dependencies:
     csstype "^3.1.0"
 
@@ -1504,6 +1546,14 @@ axe-core@^4.4.3:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.3.tgz#11c74d23d5013c0fa5d183796729bc3482bd2f6f"
   integrity sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==
 
+axios@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
+
 axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -2574,6 +2624,11 @@ flatted@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
+
+follow-redirects@^1.14.9:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
+  integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
 form-data@^3.0.0:
   version "3.0.1"

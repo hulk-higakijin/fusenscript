@@ -13,9 +13,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.3.0",
     "@clerk/nextjs": "^4.0.0-next.16",
     "@supabase/supabase-js": "^1.35.6",
     "@testing-library/user-event": "^14.4.3",
+    "axios": "^0.27.2",
     "daisyui": "^2.28.0",
     "next": "12.3.0",
     "next-page-tester": "^0.33.0",

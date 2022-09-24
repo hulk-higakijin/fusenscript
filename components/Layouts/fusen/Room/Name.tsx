@@ -21,9 +21,11 @@ const RoomName = ({ room }: { room: Room }) => {
   }
 
   const handleDelete = async () => {
-    await supabase.from('room').delete().match({ uid: uid })
-    alert('部屋を削除します。')
-    router.push('/fusen/rooms')
+    const confirmation = confirm('部屋を削除します。')
+    if (confirmation) {
+      await supabase.from('room').delete().match({ uid: uid })
+      router.push('/fusen/rooms')
+    }
   }
 
   return (

@@ -41,6 +41,7 @@ const RoomsPage: NextPage<Props> = ({ rooms }) => {
           type='roomName'
           onChange={(e) => setRoomName(e.target.value)}
           className='input input-bordered'
+          required pattern=".*[^\s]+.*"
         />
         <button className='btn' type='submit'>
           作成

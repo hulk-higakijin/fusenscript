@@ -7,7 +7,7 @@ import { supabase } from 'utils/supabase'
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const uid: string = context.query.uid as string
+  const { uid } = context.query
   const { data: room } = await supabase
     .from('room')
     .select('*')

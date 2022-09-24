@@ -1,4 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { supabase } from 'utils/supabase'
 
@@ -38,6 +39,7 @@ const RoomsUidPage: NextPage<Props> = ({
   const [defaultRoomName, setDefaultRoomName] = useState<string>(room.name)
   const [inputRoomName, setInputRoomName] = useState<string>(room.name)
   const [showForm, setShowForm] = useState<boolean>(false)
+  const router = useRouter()
 
   const handleUpdate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -50,6 +52,12 @@ const RoomsUidPage: NextPage<Props> = ({
     setShowForm(false)
   }
 
+  const handleDelete = async () => {
+    await supabase.from('room').delete().match({ uid: uid })
+    alert('部屋を削除します。')
+    router.push('/fusen/rooms')
+  }
+
   return (
     <>
       {showForm ? (
@@ -59,7 +67,8 @@ const RoomsUidPage: NextPage<Props> = ({
             value={inputRoomName}
             className='input input-bordered'
             onChange={(e) => setInputRoomName(e.target.value)}
-            required pattern=".*[^\s]+.*"
+            required
+            pattern='.*[^\s]+.*'
           />
           <button type='submit' className='btn'>
             登録
@@ -76,6 +85,9 @@ const RoomsUidPage: NextPage<Props> = ({
           <p>{defaultRoomName}</p>
           <button className='btn' onClick={() => setShowForm(true)}>
             編集
+          </button>
+          <button className='btn btn-primary' onClick={() => handleDelete()}>
+            削除
           </button>
         </>
       )}

@@ -23,3 +23,8 @@ type Kanban = {
   room_id: string
   created_at: string
 }
+
+type Coordinate = {
+  xcoordinate: number
+  ycoordinate: number
+}

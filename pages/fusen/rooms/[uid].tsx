@@ -34,9 +34,7 @@ const RoomsUidPage: NextPage<Props> = ({ room, fusens, kanbans, users }) => {
   return (
     <>
       <RoomName room={room} />
-      <p>--------------------</p>
       <Fusens fusens={fusens} users={users} />
-      <p>--------------------</p>
       <Kanbans kanbans={kanbans} />
     </>
   )

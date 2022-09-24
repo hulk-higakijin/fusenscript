@@ -1,6 +1,6 @@
 import Fusen from './Fusen'
 
-const Fusens = ({ fusens, users }: any) => {
+const Fusens = ({ fusens, users }: { fusens: Fusen[]; users: User[] }) => {
   return (
     <>
       <ul>

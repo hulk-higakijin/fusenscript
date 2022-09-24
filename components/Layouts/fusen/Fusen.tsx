@@ -1,4 +1,4 @@
-const Fusen = ({ fusen, users }: any) => {
+const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
   return (
     <>
       <li key={fusen.id}>

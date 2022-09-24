@@ -32,22 +32,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Otherwise, use Clerk to require authentication
   return (
     <ClerkProvider>
-      {isPublicPage ? (
-        <>
-          <Navbar />
-          <Component {...pageProps} />
-        </>
-      ) : (
-        <>
-          <SignedIn>
+      <div className='flex flex-col container mx-auto'>
+        {isPublicPage ? (
+          <>
             <Navbar />
             <Component {...pageProps} />
-          </SignedIn>
-          <SignedOut>
-            <RedirectToSignIn />
-          </SignedOut>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <SignedIn>
+              <Navbar />
+              <Component {...pageProps} />
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        )}
+      </div>
     </ClerkProvider>
   )
 }

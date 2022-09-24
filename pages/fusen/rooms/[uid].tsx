@@ -1,6 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
+import Fusens from 'components/Layouts/fusen/Fusens'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
@@ -93,17 +94,7 @@ const RoomsUidPage: NextPage<Props> = ({
       )}
 
       <p>--------------------</p>
-      <ul>
-        {fusens.map((fusen: Fusen) => (
-          <li key={fusen.id}>
-            {fusen.content}：{fusen.xcoordinate},{fusen.ycoordinate},
-            {
-              users.filter((user: User) => user.id == fusen.user_id)[0]
-                .firstName
-            }
-          </li>
-        ))}
-      </ul>
+      <Fusens fusens={fusens} users={users} />
       <p>--------------------</p>
       <ul>
         {kanbans.map((kanban: Kanban) => (

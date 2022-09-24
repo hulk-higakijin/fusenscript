@@ -1,12 +1,15 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
-import { useState } from 'react'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const uid: string = context.query.uid as string
-  const { data: rooms } = await supabase.from('room').select('*').eq('uid', uid)
+  const { data: room } = await supabase
+    .from('room')
+    .select('*')
+    .eq('uid', uid)
+    .single()
   const { data: fusens } = await supabase
     .from('fusen')
     .select('*')
@@ -20,13 +23,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )
 
   return {
-    props: { rooms, fusens, kanbans, users },
+    props: { room, fusens, kanbans, users },
   }
 }
 
-const RoomsUidPage: NextPage<Props> = ({ rooms, fusens, kanbans, users }) => {
-  const [room, setRoom] = useState<Room>(rooms[0])
-
+const RoomsUidPage: NextPage<Props> = ({ room, fusens, kanbans, users }) => {
   return (
     <>
       <p>{room.name}</p>

@@ -13,7 +13,9 @@ const Navbar: NextPage = () => {
         </Link>
         <ul className='ml-auto flex my-auto gap-4'>
           <Link href={'/fusen/rooms'}>
-            <li className='text-sm cursor-pointer my-auto'>Rooms</li>
+            <li className='text-sm cursor-pointer my-auto hover:text-primary'>
+              Rooms
+            </li>
           </Link>
           <SignedIn>
             <UserButton />

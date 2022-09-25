@@ -1,5 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
+import FusenCreateButton from 'components/Layouts/fusen/Fusen/CreateButton'
 import Fusens from 'components/Layouts/fusen/Fusen/Fusens'
+import KanbanCreateButton from 'components/Layouts/fusen/Kanban/CreateButton'
 import Kanbans from 'components/Layouts/fusen/Kanban/Kanbans'
 import RoomName from 'components/Layouts/fusen/Room/Name'
 import { supabase } from 'utils/supabase'
@@ -36,6 +38,10 @@ const RoomsUidPage: NextPage<Props> = ({ room, fusens, kanbans, users }) => {
       <RoomName room={room} />
       <Fusens fusens={fusens} users={users} />
       <Kanbans kanbans={kanbans} />
+      <div className='mt-auto ml-auto p-8 flex gap-10'>
+        <FusenCreateButton />
+        <KanbanCreateButton />
+      </div>
     </>
   )
 }

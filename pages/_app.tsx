@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ClerkProvider>
       <div className='h-screen w-screen'>
-        <div className='flex flex-col container mx-auto'>
+        <div className='flex flex-col container mx-auto h-full'>
           {isPublicPage ? (
             <>
               <Navbar />

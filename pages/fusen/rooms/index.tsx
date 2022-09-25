@@ -1,13 +1,15 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next/types'
-import { FormEvent, useState } from 'react'
+import RoomCreateForm from 'components/Layouts/fusen/Room/CreateForm'
+import Rooms from 'components/Layouts/fusen/Room/Rooms'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: rooms } = await supabase.from('room').select('*')
+  const { data: rooms } = await supabase
+    .from('room')
+    .select('*')
+    .order('created_at', { ascending: false })
   return {
     props: { rooms },
     revalidate: 10,
@@ -15,39 +17,12 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const RoomsPage: NextPage<Props> = ({ rooms }) => {
-  const router = useRouter()
-  const [roomName, setRoomName] = useState('')
-
-  const createRoom = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const { data } = await supabase
-      .from('room')
-      .insert([{ name: roomName }])
-      .single()
-    router.push(`/fusen/rooms/${data.uid}`)
-  }
-
   return (
     <>
-      {rooms.map((room: Room) => (
-        <div key={room.uid}>
-          <Link href={`/fusen/rooms/${room.uid}`}>{room.name}</Link>
-        </div>
-      ))}
-
-      <p>-------------------------</p>
-      <form onSubmit={(e) => createRoom(e)}>
-        <input
-          type='roomName'
-          onChange={(e) => setRoomName(e.target.value)}
-          className='input input-bordered'
-          required
-          pattern='.*[^\s]+.*'
-        />
-        <button className='btn' type='submit'>
-          作成
-        </button>
-      </form>
+      <div className='grid grid-cols-3 gap-4'>
+        <Rooms rooms={rooms} />
+        <RoomCreateForm />
+      </div>
     </>
   )
 }

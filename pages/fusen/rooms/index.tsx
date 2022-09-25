@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next/types'
 import { FormEvent, useState } from 'react'
+import Rooms from 'components/Layouts/fusen/Room/Rooms'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -29,12 +29,7 @@ const RoomsPage: NextPage<Props> = ({ rooms }) => {
 
   return (
     <>
-      {rooms.map((room: Room) => (
-        <div key={room.uid}>
-          <Link href={`/fusen/rooms/${room.uid}`}>{room.name}</Link>
-        </div>
-      ))}
-
+      <Rooms rooms={rooms} />
       <p>-------------------------</p>
       <form onSubmit={(e) => createRoom(e)}>
         <input

@@ -14,7 +14,9 @@ const Room = ({ room }: { room: Room }) => {
       <Link href={`/fusen/rooms/${room.uid}`}>
         <div className='border-b p-2 cursor-pointer flex rounded-md hover:bg-gray-50'>
           <p className='my-auto p-2'>{room.name}</p>
-          <p className='text-xs pl-auto mt-auto ml-auto w-fit h-fit'>{dateDistance}</p>
+          <p className='text-xs pl-auto mt-auto ml-auto w-fit h-fit'>
+            {dateDistance}
+          </p>
         </div>
       </Link>
     </>

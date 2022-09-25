@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
-import Fusens from 'components/Layouts/fusen/Fusens'
-import Kanbans from 'components/Layouts/fusen/Kanbans'
+import Fusens from 'components/Layouts/fusen/Fusen/Fusens'
+import Kanbans from 'components/Layouts/fusen/Kanban/Kanbans'
 import RoomName from 'components/Layouts/fusen/Room/Name'
 import { supabase } from 'utils/supabase'
 

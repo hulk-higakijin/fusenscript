@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
+import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 import { supabase } from 'utils/supabase'
 
-const RoomName = ({ room }: { room: Room }) => {
+const RoomName = () => {
+  const { room } = useContext(FusenRoomsContext)
   const [defaultRoomName, setDefaultRoomName] = useState<string>(room.name)
   const [inputRoomName, setInputRoomName] = useState<string>(room.name)
   const [showForm, setShowForm] = useState<boolean>(false)

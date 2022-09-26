@@ -6,11 +6,9 @@ const Fusens = () => {
   const { fusens, users } = useContext(FusenRoomsContext)
   return (
     <>
-      <div className='position'>
-        {fusens.map((fusen: Fusen) => (
-          <Fusen fusen={fusen} users={users} key={fusen.id} />
-        ))}
-      </div>
+      {fusens.map((fusen: Fusen) => (
+        <Fusen fusen={fusen} users={users} key={fusen.id} />
+      ))}
     </>
   )
 }

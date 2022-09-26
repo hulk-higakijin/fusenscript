@@ -6,11 +6,9 @@ const Kanbans = () => {
   const { kanbans } = useContext(FusenRoomsContext)
   return (
     <>
-      <div className='position'>
-        {kanbans.map((kanban: Kanban) => (
-          <Kanban kanban={kanban} key={kanban.id} />
-        ))}
-      </div>
+      {kanbans.map((kanban: Kanban) => (
+        <Kanban kanban={kanban} key={kanban.id} />
+      ))}
     </>
   )
 }

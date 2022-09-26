@@ -64,8 +64,10 @@ const RoomsUidPage: NextPage<Props> = ({
     <>
       <FusenRoomsContext.Provider value={value}>
         <RoomName />
-        <Fusens />
-        <Kanbans />
+        <div className='position'>
+          <Fusens />
+          <Kanbans />
+        </div>
         <div className='mt-auto ml-auto p-8 flex gap-10'>
           <FusenCreateButton />
           <KanbanCreateButton />

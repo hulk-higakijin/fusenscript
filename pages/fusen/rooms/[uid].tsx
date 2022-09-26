@@ -22,34 +22,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { uid } = context.query
   const { data: room } = await supabase
     .from('room')
-    .select('*')
+    .select(`*, fusen(*), kanban(*)`)
     .eq('uid', uid)
     .single()
-  const { data: fusenList } = await supabase
-    .from('fusen')
-    .select('*')
-    .eq('room_id', uid)
-  const { data: kanbanList } = await supabase
-    .from('kanban')
-    .select('*')
-    .eq('room_id', uid)
   const users = await fetch(`${process.env.DOMAIN}/api/users`).then((res) =>
     res.json(),
   )
 
   return {
-    props: { room, fusenList, kanbanList, users },
+    props: { room, users },
   }
 }
 
-const RoomsUidPage: NextPage<Props> = ({
-  room,
-  fusenList,
-  kanbanList,
-  users,
-}) => {
-  const [fusens, setFusens] = useState(fusenList)
-  const [kanbans, setKanbans] = useState(kanbanList)
+const RoomsUidPage: NextPage<Props> = ({ room, users }) => {
+  const [fusens, setFusens] = useState(room.fusen)
+  const [kanbans, setKanbans] = useState(room.kanban)
 
   const value = {
     room,

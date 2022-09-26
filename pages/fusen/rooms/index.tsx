@@ -8,7 +8,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 export const getStaticProps: GetStaticProps = async () => {
   const { data: rooms } = await supabase
     .from('room')
-    .select('*')
+    .select()
     .order('created_at', { ascending: false })
   return {
     props: { rooms },

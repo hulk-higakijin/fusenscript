@@ -3,7 +3,7 @@ import Draggable, { DraggableData, DraggableEvent } from 'react-draggable'
 import { supabase } from 'utils/supabase'
 
 const Kanban = ({ kanban }: { kanban: Kanban }) => {
-  const [color, setColor] = useState('bg-green-500')
+  const [color, setColor] = useState<string>('bg-green-500')
   const [location, setLocation] = useState<Coordinate>({
     xcoordinate: kanban.xcoordinate,
     ycoordinate: kanban.ycoordinate,

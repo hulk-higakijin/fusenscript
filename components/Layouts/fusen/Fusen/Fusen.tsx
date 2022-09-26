@@ -60,7 +60,7 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
           <div className='ml-auto'>
             <FontAwesomeIcon
               icon={faXmark}
-              className='hover:text-2xl hover:text-red-500 cursor-pointer'
+              className='hover:text-red-500 cursor-pointer text-2xl'
               onClick={() => handleDelete()}
             />
           </div>

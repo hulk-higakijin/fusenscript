@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import Kanban from './Kanban'
+import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 
-const Kanbans = ({ kanbans }: { kanbans: Kanban[] }) => {
+const Kanbans = () => {
+  const { kanbans } = useContext(FusenRoomsContext)
   return (
     <>
       <div className='position'>

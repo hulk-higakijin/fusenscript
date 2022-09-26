@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import Fusen from './Fusen'
+import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 
-const Fusens = ({ fusens, users }: { fusens: Fusen[]; users: User[] }) => {
+const Fusens = () => {
+  const { fusens, users } = useContext(FusenRoomsContext)
   return (
     <>
       <div className='position'>

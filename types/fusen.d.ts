@@ -28,3 +28,12 @@ type Coordinate = {
   xcoordinate: number
   ycoordinate: number
 }
+
+type FusenContextType = {
+  room: Room
+  setFusens: React.Dispatch<Fusen[]>
+  fusens: Fusen[]
+  kanbans: Kanban[]
+  setKanbans: React.Dispatch<Kanban[]>
+  users: User[]
+}

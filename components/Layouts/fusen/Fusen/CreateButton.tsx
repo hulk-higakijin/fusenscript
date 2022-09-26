@@ -1,7 +1,8 @@
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import Modal from 'react-modal'
+import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 import { customStyles } from 'styles/moda'
 import { supabase } from 'utils/supabase'
 
@@ -11,6 +12,7 @@ const FusenCreateButton = () => {
   const { user } = useUser()
   const [isOpenedModal, setIsOpenedModal] = useState<boolean>(false)
   const [content, setContent] = useState<string>('')
+  const { fusens, setFusens } = useContext(FusenRoomsContext)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -18,8 +20,8 @@ const FusenCreateButton = () => {
       const user_id = user.id
       const body = { content, room_id, user_id }
       const { data } = await supabase.from('fusen').insert([body]).single()
-      // このデータをfusensの配列に追加する処理を書く
-      console.log(data)
+      setFusens([...fusens, data])
+      setIsOpenedModal(false)
     }
   }
 

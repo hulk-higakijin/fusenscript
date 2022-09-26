@@ -56,7 +56,7 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
       <div
         className={`${color} h-28 w-40 text-white px-2 pb-2 rounded-sm flex flex-col border border-black cursor-grab absolute`}
       >
-        {isMyFusen() ? (
+        {isMyFusen() && (
           <div className='ml-auto'>
             <FontAwesomeIcon
               icon={faXmark}
@@ -64,8 +64,6 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
               onClick={() => handleDelete()}
             />
           </div>
-        ) : (
-          <></>
         )}
         <p className='m-auto'>{fusen.content}</p>
         <p className='text-sm ml-auto'>{userName}</p>

@@ -7,6 +7,7 @@ import {
 } from '@clerk/nextjs'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import NextNProgress from 'nextjs-progressbar'
 import { useEffect } from 'react'
 import Navbar from 'components/Layouts/Navbar'
 
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Otherwise, use Clerk to require authentication
   return (
     <ClerkProvider>
+      <NextNProgress />
       <div className='h-screen w-screen'>
         <div className='flex flex-col container mx-auto h-full'>
           {isPublicPage ? (

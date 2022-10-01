@@ -52,6 +52,7 @@ const Kanban = ({ kanban }: { kanban: Kanban }) => {
           .match({ id: kanban.id })
           .single()
         setKanbans(kanbans.filter((kanban: Kanban) => kanban.id !== data.id))
+        socket.emit('deleteKanbanRequest', { data })
       }
     }
     deleteKanban()

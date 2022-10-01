@@ -80,6 +80,15 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
         setKanbans(array)
       }
     })
+
+    socket.on('deleteKanban', ( res) => {
+      if (res.room_id == uid) {
+        let array = kanbans.filter((kanban: Kanban) => {
+          return kanban.id != res.id
+        })
+        setKanbans(array)
+      }
+    })
   }, [fusens, kanbans, uid])
 
   return (

@@ -1,10 +1,11 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import FusenCreateButton from 'components/Layouts/fusen/Fusen/CreateButton'
 import Fusens from 'components/Layouts/fusen/Fusen/Fusens'
 import KanbanCreateButton from 'components/Layouts/fusen/Kanban/CreateButton'
 import Kanbans from 'components/Layouts/fusen/Kanban/Kanbans'
 import RoomName from 'components/Layouts/fusen/Room/Name'
+import { socket } from 'utils/socket'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
@@ -30,13 +31,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )
 
   return {
-    props: { room, users },
+    props: { room, users, uid },
   }
 }
 
-const RoomsUidPage: NextPage<Props> = ({ room, users }) => {
-  const [fusens, setFusens] = useState(room.fusen)
-  const [kanbans, setKanbans] = useState(room.kanban)
+const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
+  const [fusens, setFusens] = useState<Fusen[]>(room.fusen)
+  const [kanbans, setKanbans] = useState<Kanban[]>(room.kanban)
 
   const value = {
     room,
@@ -46,6 +47,46 @@ const RoomsUidPage: NextPage<Props> = ({ room, users }) => {
     setKanbans,
     users,
   }
+
+  useEffect(() => {
+    socket.on('shareFusen', (res) => {
+      if (res.room_id == uid) {
+        let array = fusens.filter((fusen: Fusen) => {
+          return fusen.id != res.id
+        })
+        array.push(res)
+        setFusens(array)
+      }
+    })
+
+    socket.on('deleteFusen', (res) => {
+      if (res.room_id == uid) {
+        let array = fusens.filter((fusen: Fusen) => {
+          return fusen.id != res.id
+        })
+        setFusens(array)
+      }
+    })
+
+    socket.on('shareKanban', (res) => {
+      if (res.room_id == uid) {
+        let array = kanbans.filter((kanban: Kanban) => {
+          return kanban.id != res.id
+        })
+        array.push(res)
+        setKanbans(array)
+      }
+    })
+
+    socket.on('deleteKanban', (res) => {
+      if (res.room_id == uid) {
+        let array = kanbans.filter((kanban: Kanban) => {
+          return kanban.id != res.id
+        })
+        setKanbans(array)
+      }
+    })
+  }, [fusens, kanbans, uid])
 
   return (
     <>

@@ -7,12 +7,9 @@ import Draggable, {
   DraggableData,
   DraggableEvent,
 } from 'react-draggable'
-import { io, Socket } from 'socket.io-client'
 import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
+import { socket } from 'utils/socket'
 import { supabase } from 'utils/supabase'
-
-const server_url = 'http://localhost:8000'
-const socket: Socket = io(server_url)
 
 const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
   const [userName, setUserName] = useState<string>(

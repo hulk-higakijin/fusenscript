@@ -7,12 +7,9 @@ import Draggable, {
   DraggableData,
   DraggableEvent,
 } from 'react-draggable'
-import { io, Socket } from 'socket.io-client'
 import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
+import { socket } from 'utils/socket'
 import { supabase } from 'utils/supabase'
-
-const server_url = 'http://localhost:8000'
-const socket: Socket = io(server_url)
 
 const Kanban = ({ kanban }: { kanban: Kanban }) => {
   const [color, setColor] = useState<string>('bg-green-500')

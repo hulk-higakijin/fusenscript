@@ -1,17 +1,14 @@
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { createContext, useEffect, useState } from 'react'
-import { io, Socket } from 'socket.io-client'
 import FusenCreateButton from 'components/Layouts/fusen/Fusen/CreateButton'
 import Fusens from 'components/Layouts/fusen/Fusen/Fusens'
 import KanbanCreateButton from 'components/Layouts/fusen/Kanban/CreateButton'
 import Kanbans from 'components/Layouts/fusen/Kanban/Kanbans'
 import RoomName from 'components/Layouts/fusen/Room/Name'
+import { socket } from 'utils/socket'
 import { supabase } from 'utils/supabase'
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
-
-const server_url = 'http://localhost:8000'
-const socket: Socket = io(server_url)
 
 export const FusenRoomsContext = createContext<FusenContextType>({
   room: { id: '', name: '', created_at: '', uid: '' },
@@ -54,7 +51,7 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
   useEffect(() => {
     socket.on('shareFusen', (res) => {
       if (res.room_id == uid) {
-        let array  = fusens.filter((fusen: Fusen) => {
+        let array = fusens.filter((fusen: Fusen) => {
           return fusen.id != res.id
         })
         array.push(res)
@@ -71,7 +68,7 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
       }
     })
 
-    socket.on('shareKanban', (res)=> {
+    socket.on('shareKanban', (res) => {
       if (res.room_id == uid) {
         let array = kanbans.filter((kanban: Kanban) => {
           return kanban.id != res.id
@@ -81,7 +78,7 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
       }
     })
 
-    socket.on('deleteKanban', ( res) => {
+    socket.on('deleteKanban', (res) => {
       if (res.room_id == uid) {
         let array = kanbans.filter((kanban: Kanban) => {
           return kanban.id != res.id

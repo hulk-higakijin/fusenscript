@@ -30,6 +30,7 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setLocation({ xcoordinate: data.x, ycoordinate: data.y })
+    setNewPosition({ x: data.x, y: data.y })
   }
 
   const handleStop = () => {
@@ -59,6 +60,8 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
   }
 
   useEffect(() => {
+    console.log('hogehoge')
+    console.log(newPosition)
     setNewPosition({ x: fusen.xcoordinate, y: fusen.ycoordinate })
   }, [fusen])
 

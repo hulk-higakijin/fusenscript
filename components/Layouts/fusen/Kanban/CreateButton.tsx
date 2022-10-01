@@ -28,7 +28,7 @@ const KanbanCreateButton = () => {
   return (
     <>
       <button
-        className='btn btn-primary'
+        className='btn btn-success'
         onClick={() => setIsOpenedModal(true)}
       >
         Kanban
@@ -48,13 +48,13 @@ const KanbanCreateButton = () => {
           />
           <div className='flex'>
             <button
-              className='btn btn-sm'
+              className='btn btn-sm btn-error'
               onClick={() => setIsOpenedModal(false)}
               type='submit'
             >
               キャンセル
             </button>
-            <button className='btn btn-sm btn-primary ml-auto'>作成</button>
+            <button className='btn btn-sm btn-success ml-auto'>作成</button>
           </div>
         </form>
       </Modal>

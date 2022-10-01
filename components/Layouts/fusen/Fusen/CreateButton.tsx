@@ -48,7 +48,7 @@ const FusenCreateButton = () => {
           />
           <div className='flex'>
             <button
-              className='btn btn-sm'
+              className='btn btn-sm btn-error'
               onClick={() => setIsOpenedModal(false)}
               type='submit'
             >

@@ -12,7 +12,7 @@ import { socket } from 'utils/socket'
 import { supabase } from 'utils/supabase'
 
 const Kanban = ({ kanban }: { kanban: Kanban }) => {
-  const [color, setColor] = useState<string>('bg-green-500')
+  const [color, setColor] = useState<string>('bg-success')
   const [location, setLocation] = useState<Coordinate>({
     xcoordinate: kanban.xcoordinate,
     ycoordinate: kanban.ycoordinate,
@@ -67,7 +67,7 @@ const Kanban = ({ kanban }: { kanban: Kanban }) => {
       position={newPosition}
     >
       <div
-        className={`${color} w-fit px-4 py-1 rounded-sm text-white cursor-grab absolute flex`}
+        className={`${color} w-fit px-4 py-1 rounded-sm text-success-content cursor-grab absolute flex`}
       >
         <p>{kanban.title}</p>
         <div className='ml-4 flex'>

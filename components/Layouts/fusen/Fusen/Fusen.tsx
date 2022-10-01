@@ -68,9 +68,6 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
 
   useEffect(() => {
     setNewPosition({ x: fusen.xcoordinate, y: fusen.ycoordinate })
-
-    // newPositionが第二引数に必要らしいが、バグが治らないので、放置
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fusen])
 
   return (

@@ -1,10 +1,18 @@
 import { useUser } from '@clerk/nextjs'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContext, useState } from 'react'
-import Draggable, { DraggableData, DraggableEvent } from 'react-draggable'
+import { useContext, useEffect, useState } from 'react'
+import Draggable, {
+  ControlPosition,
+  DraggableData,
+  DraggableEvent,
+} from 'react-draggable'
+import { io, Socket } from 'socket.io-client'
 import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 import { supabase } from 'utils/supabase'
+
+const server_url = 'http://localhost:8000'
+const socket: Socket = io(server_url)
 
 const Kanban = ({ kanban }: { kanban: Kanban }) => {
   const [color, setColor] = useState<string>('bg-green-500')
@@ -12,16 +20,25 @@ const Kanban = ({ kanban }: { kanban: Kanban }) => {
     xcoordinate: kanban.xcoordinate,
     ycoordinate: kanban.ycoordinate,
   })
+  const [newPosition, setNewPosition] = useState<ControlPosition | undefined>(
+    undefined,
+  )
   const { user } = useUser()
   let { kanbans, setKanbans } = useContext(FusenRoomsContext)
 
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setLocation({ xcoordinate: data.x, ycoordinate: data.y })
+    setNewPosition({ x: data.x, y: data.y })
   }
 
   const handleStop = () => {
     const updateKanban = async () => {
-      await supabase.from('kanban').update(location).match({ id: kanban.id })
+      const { data } = await supabase
+        .from('kanban')
+        .update(location)
+        .match({ id: kanban.id })
+        .single()
+      socket.emit('shareKanbanRequest', { data })
     }
     updateKanban()
   }
@@ -40,11 +57,16 @@ const Kanban = ({ kanban }: { kanban: Kanban }) => {
     deleteKanban()
   }
 
+  useEffect(() => {
+    setNewPosition({ x: kanban.xcoordinate, y: kanban.ycoordinate })
+  }, [kanban])
+
   return (
     <Draggable
       defaultPosition={{ x: kanban.xcoordinate, y: kanban.ycoordinate }}
       onDrag={(e, data) => handleDrag(e, data)}
       onStop={() => handleStop()}
+      position={newPosition}
     >
       <div
         className={`${color} w-fit px-4 py-1 rounded-sm text-white cursor-grab absolute flex`}

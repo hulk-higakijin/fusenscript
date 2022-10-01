@@ -70,7 +70,17 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
         setFusens(array)
       }
     })
-  }, [fusens, uid])
+
+    socket.on('shareKanban', (res)=> {
+      if (res.room_id == uid) {
+        let array = kanbans.filter((kanban: Kanban) => {
+          return kanban.id != res.id
+        })
+        array.push(res)
+        setKanbans(array)
+      }
+    })
+  }, [fusens, kanbans, uid])
 
   return (
     <>

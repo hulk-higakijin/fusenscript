@@ -61,6 +61,15 @@ const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
         setFusens(array)
       }
     })
+
+    socket.on('deleteFusen', (res) => {
+      if (res.room_id == uid) {
+        let array = fusens.filter((fusen: Fusen) => {
+          return fusen.id != res.id
+        })
+        setFusens(array)
+      }
+    })
   }, [fusens, uid])
 
   return (

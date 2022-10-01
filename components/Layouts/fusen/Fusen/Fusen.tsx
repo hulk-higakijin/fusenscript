@@ -60,6 +60,7 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
           .match({ id: fusen.id, user_id: user.id })
           .single()
         setFusens(fusens.filter((fusen: Fusen) => fusen.id !== data.id))
+        socket.emit('deleteFusenRequest', { data })
       }
     }
     deleteFusen()

@@ -66,8 +66,6 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
   }
 
   useEffect(() => {
-    console.log('hogehoge')
-    console.log(newPosition)
     setNewPosition({ x: fusen.xcoordinate, y: fusen.ycoordinate })
 
     // newPositionが第二引数に必要らしいが、バグが治らないので、放置

@@ -34,11 +34,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )
 
   return {
-    props: { room, users },
+    props: { room, users, uid },
   }
 }
 
-const RoomsUidPage: NextPage<Props> = ({ room, users }) => {
+const RoomsUidPage: NextPage<Props> = ({ room, users, uid }) => {
   const [fusens, setFusens] = useState<Fusen[]>(room.fusen)
   const [kanbans, setKanbans] = useState<Kanban[]>(room.kanban)
 
@@ -53,13 +53,15 @@ const RoomsUidPage: NextPage<Props> = ({ room, users }) => {
 
   useEffect(() => {
     socket.on('shareFusen', (res) => {
-      let data = fusens.filter((fusen: Fusen) => {
-        return fusen.id != res.id
-      })
-      data.push(res)
-      setFusens(data)
+      if (res.room_id == uid) {
+        let array  = fusens.filter((fusen: Fusen) => {
+          return fusen.id != res.id
+        })
+        array.push(res)
+        setFusens(array)
+      }
     })
-  }, [fusens])
+  }, [fusens, uid])
 
   return (
     <>

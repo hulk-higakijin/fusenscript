@@ -13,7 +13,7 @@ import { supabase } from 'utils/supabase'
 
 const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
   const [userName, setUserName] = useState<string>(
-    users.filter((user: User) => user.id == fusen.user_id)[0].firstName,
+    users.filter((user: User) => user.id == fusen.user_id)[0].username,
   )
   const [color, setColor] = useState<string>('bg-primary') // ランダムカラーを設定したい
   // ドラドロでかなりへんかするためstateで持つ

@@ -2,7 +2,11 @@ import { useUser } from '@clerk/nextjs'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext, useEffect, useState } from 'react'
-import Draggable, { ControlPosition, DraggableData, DraggableEvent } from 'react-draggable'
+import Draggable, {
+  ControlPosition,
+  DraggableData,
+  DraggableEvent,
+} from 'react-draggable'
 import { io, Socket } from 'socket.io-client'
 import { FusenRoomsContext } from 'pages/fusen/rooms/[uid]'
 import { supabase } from 'utils/supabase'
@@ -20,7 +24,9 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
     xcoordinate: fusen.xcoordinate,
     ycoordinate: fusen.ycoordinate,
   })
-  const [newPosition, setNewPosition] = useState<ControlPosition | undefined>(undefined)
+  const [newPosition, setNewPosition] = useState<ControlPosition | undefined>(
+    undefined,
+  )
   const { user } = useUser()
   let { fusens, setFusens } = useContext(FusenRoomsContext)
 
@@ -63,6 +69,9 @@ const Fusen = ({ fusen, users }: { fusen: Fusen; users: User[] }) => {
     console.log('hogehoge')
     console.log(newPosition)
     setNewPosition({ x: fusen.xcoordinate, y: fusen.ycoordinate })
+
+    // newPositionが第二引数に必要らしいが、バグが治らないので、放置
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fusen])
 
   return (

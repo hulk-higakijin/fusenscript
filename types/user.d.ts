@@ -2,7 +2,7 @@ type User = {
   id: string
   firstName: string // 公式docが間違っている可能性あり
   lastName: string | null
-  username: string | null
+  username: string
   profileImageUrl: string | null
   primaryEmailAddress: EmailAddress | null
   primaryEmailAddressId: string | null
